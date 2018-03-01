@@ -47,69 +47,69 @@ def I_values(_I=0.005, size=5001):
     I[1000:4000] = _I
     return I
 
+if (__name__=='__main__'):
+    # time parameters for plotting
+    T       =   0.100                       # total simulation length [s]
+    dt      =   0.00002                     # step size [s]
+    time    =   np.arange(0, T+dt, dt)      # step values [s]
 
-# time parameters for plotting
-T       =   0.100                       # total simulation length [s]
-dt      =   0.00002                     # step size [s]
-time    =   np.arange(0, T+dt, dt)      # step values [s]
+    # initial parameters
+    I_init  =   0.005
+    gl_init =   0.16
+    Cm_init =   0.0049
 
-# initial parameters
-I_init  =   0.005
-gl_init =   0.16
-Cm_init =   0.0049
+    # update functions for lines
+    V = LIF(_I=I_init, gl=gl_init, Cm=Cm_init)
+    I = I_values(_I=I_init, size=len(time))
 
-# update functions for lines
-V = LIF(_I=I_init, gl=gl_init, Cm=Cm_init)
-I = I_values(_I=I_init, size=len(time))
+    ######### Plotting
+    axis_color = 'lightgoldenrodyellow'
 
-######### Plotting
-axis_color = 'lightgoldenrodyellow'
+    fig = plt.figure("Leaky Integrate-and-Fire Neuron", figsize=(14,7))
+    ax = fig.add_subplot(111)
+    plt.title("Interactive Leaky Integrate-and-Fire Neuron Simulation")
+    fig.subplots_adjust(left=0.1, bottom=0.32)
 
-fig = plt.figure("Leaky Integrate-and-Fire Neuron", figsize=(14,7))
-ax = fig.add_subplot(111)
-plt.title("Interactive Leaky Integrate-and-Fire Neuron Simulation")
-fig.subplots_adjust(left=0.1, bottom=0.32)
+    # plot lines
+    line = plt.plot(time, V, label="Membrane Potential")[0]
+    line2 = plt.plot(time, I, label="Applied Current")[0]
 
-# plot lines
-line = plt.plot(time, V, label="Membrane Potential")[0]
-line2 = plt.plot(time, I, label="Applied Current")[0]
+    # add legend
+    plt.legend(loc = "upper right")
 
-# add legend
-plt.legend(loc = "upper right")
+    # add axis labels
+    plt.ylabel("Potential [V]/ Current [A]")
+    plt.xlabel("Time [s]")
 
-# add axis labels
-plt.ylabel("Potential [V]/ Current [A]")
-plt.xlabel("Time [s]")
+    # define sliders (position, color, inital value, parameter, etc...)
+    I_slider_axis = plt.axes([0.1, 0.17, 0.65, 0.03], facecolor=axis_color)
+    I_slider = Slider(I_slider_axis, '$I_{ext}$', -0.01, 0.03, valinit=I_init)
 
-# define sliders (position, color, inital value, parameter, etc...)
-I_slider_axis = plt.axes([0.1, 0.17, 0.65, 0.03], facecolor=axis_color)
-I_slider = Slider(I_slider_axis, 'Current', -0.01, 0.03, valinit=I_init)
+    gl_slider_axis = plt.axes([0.1, 0.12, 0.65, 0.03], facecolor=axis_color)
+    gl_slider = Slider(gl_slider_axis, '$g_{L}$', 0.0, 0.3, valinit=gl_init)
 
-gl_slider_axis = plt.axes([0.1, 0.12, 0.65, 0.03], facecolor=axis_color)
-gl_slider = Slider(gl_slider_axis, 'Conductance', 0.0, 0.3, valinit=gl_init)
+    Cm_slider_axis = plt.axes([0.1, 0.07, 0.65, 0.03], facecolor=axis_color)
+    Cm_slider = Slider(Cm_slider_axis, '$C_{m}$', 0.0, 0.01, valinit=Cm_init)
 
-Cm_slider_axis = plt.axes([0.1, 0.07, 0.65, 0.03], facecolor=axis_color)
-Cm_slider = Slider(Cm_slider_axis, 'Capacitance', 0.0, 0.01, valinit=Cm_init)
+    # update functions
+    def update(val):
+        line.set_ydata(LIF(I_slider.val, gl_slider.val, Cm_slider.val))
+        line2.set_ydata(I_values(I_slider.val))
 
-# update functions
-def update(val):
-    line.set_ydata(LIF(I_slider.val, gl_slider.val, Cm_slider.val))
-    line2.set_ydata(I_values(I_slider.val))
+    # update, if any slider is moved
+    I_slider.on_changed(update)
+    gl_slider.on_changed(update)
+    Cm_slider.on_changed(update)
 
-# update, if any slider is moved
-I_slider.on_changed(update)
-gl_slider.on_changed(update)
-Cm_slider.on_changed(update)
+    # Add a button for resetting the parameters
+    reset_button_ax = plt.axes([0.8, 0.02, 0.1, 0.04])
+    reset_button = Button(reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
 
-# Add a button for resetting the parameters
-reset_button_ax = plt.axes([0.8, 0.02, 0.1, 0.04])
-reset_button = Button(reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
+    # event of resert button being clicked
+    def reset_button_was_clicked(event):
+        I_slider.reset()
+        gl_slider.reset()
+        Cm_slider.reset()
+    reset_button.on_clicked(reset_button_was_clicked)
 
-# event of resert button being clicked
-def reset_button_was_clicked(event):
-    I_slider.reset()
-    gl_slider.reset()
-    Cm_slider.reset()
-reset_button.on_clicked(reset_button_was_clicked)
-
-plt.show()
+    plt.show()
