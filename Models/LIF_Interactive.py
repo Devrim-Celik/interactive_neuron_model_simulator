@@ -42,12 +42,12 @@ def LIF(_I=0.005, gl=0.16, Cm=0.0049):
 
     return V
 
-def I_values(_I=0.005, size=5001):
+def I_values(_I=0.005, time=None):
     I = np.zeros(len(time))
     I[1000:4000] = _I
     return I
 
-if (__name__=='__main__'):
+def start_LIF_sim():
     # time parameters for plotting
     T       =   0.100                       # total simulation length [s]
     dt      =   0.00002                     # step size [s]
@@ -60,7 +60,7 @@ if (__name__=='__main__'):
 
     # update functions for lines
     V = LIF(_I=I_init, gl=gl_init, Cm=Cm_init)
-    I = I_values(_I=I_init, size=len(time))
+    I = I_values(_I=I_init, time=time)
 
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
@@ -94,7 +94,7 @@ if (__name__=='__main__'):
     # update functions
     def update(val):
         line.set_ydata(LIF(I_slider.val, gl_slider.val, Cm_slider.val))
-        line2.set_ydata(I_values(I_slider.val))
+        line2.set_ydata(I_values(I_slider.val, time=time))
 
     # update, if any slider is moved
     I_slider.on_changed(update)
@@ -113,3 +113,6 @@ if (__name__=='__main__'):
     reset_button.on_clicked(reset_button_was_clicked)
 
     plt.show()
+
+if (__name__=='__main__'):
+    start_LIF_sim()

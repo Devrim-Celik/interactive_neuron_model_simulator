@@ -46,12 +46,12 @@ def Izhikevich_Model(_I = 10, a = 0.02, b = 0.2, c = -65, d = 8):
 
     return V
 
-def I_values(_I=10):
+def I_values(_I=10, time=None):
     I = np.zeros(len(time))
     I[200:1500] = _I
     return I
 
-if (__name__=='__main__'):
+def start_IZ_sim():
     # time parameters for plotting
     T               =   1000                    # total simulation length [ms]
     dt              =   0.5                     # step size [ms]
@@ -65,7 +65,7 @@ if (__name__=='__main__'):
     d_init = 8
 
     V = Izhikevich_Model()
-    I = I_values()
+    I = I_values(time=time)
 
 
 
@@ -107,7 +107,7 @@ if (__name__=='__main__'):
     # update functions
     def update(val):
         line.set_ydata(Izhikevich_Model(I_slider.val, a_slider.val, b_slider.val, c_slider.val, d_slider.val))
-        line2.set_ydata(I_values(I_slider.val))
+        line2.set_ydata(I_values(I_slider.val, time=time))
 
     # update, if any slider is moved
     I_slider.on_changed(update)
@@ -238,3 +238,7 @@ if (__name__=='__main__'):
 
 
     plt.show()
+
+
+if (__name__=='__main__'):
+    start_IZ_sim()

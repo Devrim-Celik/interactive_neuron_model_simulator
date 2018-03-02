@@ -59,12 +59,12 @@ def HH(_I = 7, C_m = 1., g_Na = 120., g_K = 36., g_Leak = 0.3, E_Na = 50.,
 
     return V, m, h, n
 
-def I_values(_I=7):
+def I_values(time=None, _I=7):
     I = np.zeros(len(time))
     I[400:3000] = _I
     return I
 
-if (__name__=='__main__'):
+def start_HH_sim():
     T       =       400                       # total simulation length
     dt      =       0.1                       # step size
     time    =       np.arange(0, T+dt, dt)    # step values
@@ -80,7 +80,7 @@ if (__name__=='__main__'):
     I_init       =       15
 
     V, m, h, n = HH()
-    I = I_values()
+    I = I_values(time=time)
 
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
@@ -141,7 +141,7 @@ if (__name__=='__main__'):
             E_Na = ENa_slider.val, E_K = EK_slider.val,
             E_Leak = ELeak_slider.val)
         line.set_ydata(V)
-        line2.set_ydata(I_values(I_slider.val))
+        line2.set_ydata(I_values(I_slider.val, time=time))
         line3.set_ydata(m)
         line4.set_ydata(h)
         line5.set_ydata(n)
@@ -172,3 +172,6 @@ if (__name__=='__main__'):
     reset_button.on_clicked(reset_button_was_clicked)
 
     plt.show()
+
+if (__name__=="__main__"):
+    start_HH_sim()
