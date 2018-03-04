@@ -24,7 +24,9 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 ---
 
 ## Currently Available Models
-![Model Selection](https://github.com/MistySheep/Interactive_Neuron-Models/blob/master/images/available_models.png)
+- *Hodgkin-Huxley Model*
+- *Izhikevich Model*
+- *Leaky Integrate-and-Fire Model*
 
 ---
 
