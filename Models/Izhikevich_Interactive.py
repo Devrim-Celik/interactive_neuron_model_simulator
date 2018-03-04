@@ -9,6 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import  Button, Slider
 
+#==============================================================================#
+
 def Izhikevich_Model(_I = 10, a = 0.02, b = 0.2, c = -65, d = 8):
 
     ######### Constants
@@ -50,6 +52,8 @@ def I_values(_I=10, time=None):
     I = np.zeros(len(time))
     I[200:1500] = _I
     return I
+
+#==============================================================================#
 
 def start_IZ_sim():
     # time parameters for plotting
@@ -117,11 +121,7 @@ def start_IZ_sim():
     d_slider.on_changed(update)
 
 
-
-
-    ################################################################################
     ########################### REGULAR SPIKING BUTTON #############################
-    ################################################################################
     # Add a button for resetting the parameters
     RS_button_ax = plt.axes([0.1, 0.1, 0.15, 0.04])
     RS_button = Button(RS_button_ax, 'REGULAR SPIKING', color=axis_color, hovercolor='0.975')
@@ -137,11 +137,7 @@ def start_IZ_sim():
     RS_button.on_clicked(RS_button_was_clicked)
 
 
-
-
-    ################################################################################
     ########################### INTRINSICALLY BURSTING BUTTON ######################
-    ################################################################################
     # Add a button for resetting the parameters
     IB_button_ax = plt.axes([0.35, 0.1, 0.15, 0.04])
     IB_button = Button(IB_button_ax, 'INTRINSICALLY BURSTING', color=axis_color, hovercolor='0.975')
@@ -157,11 +153,7 @@ def start_IZ_sim():
     IB_button.on_clicked(IB_button_was_clicked)
 
 
-
-
-    ################################################################################
     ################################ CHATTERING BUTTON #############################
-    ################################################################################
     # Add a button for resetting the parameters
     CH_button_ax = plt.axes([0.6, 0.1, 0.15, 0.04])
     CH_button = Button(CH_button_ax, 'CHATTERING', color=axis_color, hovercolor='0.975')
@@ -177,11 +169,7 @@ def start_IZ_sim():
     CH_button.on_clicked(CH_button_was_clicked)
 
 
-
-
-    ################################################################################
     ############################### FAST SPIKING BUTTON ############################
-    ################################################################################
     # Add a button for resetting the parameters
     FS_button_ax = plt.axes([0.1, 0.02, 0.15, 0.04])
     FS_button = Button(FS_button_ax, 'FAST SPIKING', color=axis_color, hovercolor='0.975')
@@ -197,11 +185,7 @@ def start_IZ_sim():
     FS_button.on_clicked(FS_button_was_clicked)
 
 
-
-
-    ################################################################################
     ######################### LOW-THRESHOLD SPIKING BUTTON #########################
-    ################################################################################
     # Add a button for resetting the parameters
     LTS_button_ax = plt.axes([0.35, 0.02, 0.15, 0.04])
     LTS_button = Button(LTS_button_ax, 'LOW-THRESHOLD SPIKING', color=axis_color, hovercolor='0.975')
@@ -217,11 +201,7 @@ def start_IZ_sim():
     LTS_button.on_clicked(LTS_button_was_clicked)
 
 
-
-
-    ################################################################################
     ################################# RESONATOR BUTTON #############################
-    ################################################################################
     # Add a button for resetting the parameters
     RZ_button_ax = plt.axes([0.6, 0.02, 0.15, 0.04])
     RZ_button_ = Button(RZ_button_ax, 'RESONATOR', color=axis_color, hovercolor='0.975')
@@ -239,6 +219,7 @@ def start_IZ_sim():
 
     plt.show()
 
+#==============================================================================#
 
 if (__name__=='__main__'):
     start_IZ_sim()

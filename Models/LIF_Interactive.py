@@ -8,6 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import  Button, Slider
 
+#==============================================================================#
+
 def LIF(_I=0.005, gl=0.16, Cm=0.0049):
 
     ######### Constants
@@ -46,6 +48,8 @@ def I_values(_I=0.005, time=None):
     I = np.zeros(len(time))
     I[1000:4000] = _I
     return I
+
+#==============================================================================#
 
 def start_LIF_sim():
     # time parameters for plotting
@@ -113,6 +117,8 @@ def start_LIF_sim():
     reset_button.on_clicked(reset_button_was_clicked)
 
     plt.show()
+
+#==============================================================================#
 
 if (__name__=='__main__'):
     start_LIF_sim()

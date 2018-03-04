@@ -9,9 +9,13 @@ import matplotlib.pyplot as plt
 from matplotlib.pyplot import  Button, Slider
 from scipy.integrate import odeint
 
+#==============================================================================#
 
-def HH(_I = 7, C_m = 1., g_Na = 120., g_K = 36., g_Leak = 0.3, E_Na = 50.,
-            E_K = -77., E_Leak = -54.387):
+def HH(_I = 7, g_Na = 120., g_K = 36., g_Leak = 0.3, E_Na = 50., E_K = -77.,
+    E_Leak = -54.387):
+
+    ######### Constants
+    C_m = 1.        # Membrane Capacitance
 
     ######### Gating Kinetics
     m_alpha =       lambda V: 0.1 * (V + 40.0) / (1.0 - np.exp(-(V + 40.0) / 10.0))
@@ -63,6 +67,8 @@ def I_values(time=None, _I=7):
     I = np.zeros(len(time))
     I[400:3000] = _I
     return I
+
+#==============================================================================#
 
 def start_HH_sim():
     T       =       400                       # total simulation length
@@ -172,6 +178,8 @@ def start_HH_sim():
     reset_button.on_clicked(reset_button_was_clicked)
 
     plt.show()
+
+#==============================================================================#
 
 if (__name__=="__main__"):
     start_HH_sim()
