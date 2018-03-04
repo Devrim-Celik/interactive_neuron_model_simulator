@@ -24,9 +24,9 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 ---
 
 ## Currently Available Models
-![Model Selection](https://github.com/MistySheep/Interactive_Neuron-Models/tree/master/images)
+![Model Selection](https://github.com/MistySheep/Interactive_Neuron-Models/blob/master/images/available_models.png)
 
 ---
 
 ## Screenshot of Izhikevich Model Simulator
-![Izhikevich Model Simulator](https://github.com/MistySheep/Interactive_Neuron-Models/tree/master/images)
+![Izhikevich Model Simulator](https://github.com/MistySheep/Interactive_Neuron-Models/blob/master/images/izhikevich_model_sim.png)
