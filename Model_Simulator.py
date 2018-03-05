@@ -9,7 +9,7 @@ if (__name__=="__main__"):
 
     ####### Size and Position of GUI
     w = 450
-    h = 120
+    h = 140
     ws = root.winfo_screenwidth() # width of the screen
     hs = root.winfo_screenheight() # height of the screen
     x = (ws/2) - (w/2)
@@ -28,7 +28,8 @@ if (__name__=="__main__"):
         start_HH_sim()
     def IZ_clicked(): # Izhikevich
         start_IZ_sim()
-
+    def FN_clicked(): # FitzHugh-Nagumo
+        start_FN_sim()
 
     def close_window(root=root): # close window button
         root.destroy()
@@ -46,6 +47,9 @@ if (__name__=="__main__"):
         command=IZ_clicked, height=1, width=30)
     IZ_btn.pack()
 
+    FN_btn = tk.Button(root, text="FitzHugh-Nagumo Model",
+        command=FN_clicked, height=1, width=30)
+    FN_btn.pack()
 
 
     EXIT_btn = tk.Button(root, text="Exit",
@@ -57,6 +61,7 @@ if (__name__=="__main__"):
     from Models.LIF_Interactive import start_LIF_sim
     from Models.Hodgkin_Huxley_Interactive import start_HH_sim
     from Models.Izhikevich_Interactive import start_IZ_sim
+    from Models.FitzHugh_Nagumo_Interactive import start_FN_sim
 
     ######## start root
     root.mainloop()

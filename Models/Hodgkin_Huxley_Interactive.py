@@ -147,7 +147,7 @@ def start_HH_sim():
             E_Na = ENa_slider.val, E_K = EK_slider.val,
             E_Leak = ELeak_slider.val)
         line.set_ydata(V)
-        line2.set_ydata(I_values(I_slider.val, time=time))
+        line2.set_ydata(I_values(_I=I_slider.val, time=time))
         line3.set_ydata(m)
         line4.set_ydata(h)
         line5.set_ydata(n)
