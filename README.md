@@ -27,6 +27,7 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 - *Hodgkin-Huxley Model*
 - *Izhikevich Model*
 - *Leaky Integrate-and-Fire Model*
+- *FitzHugh-Nagumo Model*
 
 ---
 
