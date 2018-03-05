@@ -17,7 +17,7 @@ user to manipulate the external current as well as model specific key values.
 
 ## Execution
 Simply clone this repository, be sure to have all the required packages
-installed and execute ```Model_Simulator.py```, which open a menu of different
+installed and execute ```Model_Simulator.py```, which opens a menu of different
 models to choose from.  
 After one is chosen, an interactive ```matplotlib``` window will open.
 
