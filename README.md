@@ -1,6 +1,6 @@
 # Interative Neuron Models
 In this repository, you can find a variety of computational neuron models,
-ranging from complex models such as the Hodgkin-Huxley Model over to simple
+ranging from complex models such as the Hodgkin-Huxley model over to simple
 model like a leaky integrate-and-fire model; written in Python 3.  
 Each of those is represented via a GUI, coded in **tkinter**, allowing the
 user to manipulate the external current as well as model specific key values.
