@@ -71,12 +71,10 @@ def start_IZ_sim():
     V = Izhikevich_Model()
     I = I_values(time=time)
 
-
-
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
 
-    fig = plt.figure("Simple Izhikevich Neuron", figsize=(14,8))
+    fig = plt.figure("Simple Izhikevich Neuron", figsize=(14, 8))
     ax = fig.add_subplot(111)
     plt.title("Interactive Izhikevich Neuron Simulation")
     fig.subplots_adjust(left=0.1, bottom=0.5)
@@ -86,7 +84,7 @@ def start_IZ_sim():
     line2 = plt.plot(time, I, label="Applied Current")[0]
 
     # add legend
-    plt.legend(loc = "upper right")
+    plt.legend(loc="upper right")
 
     # add axis labels
     plt.ylabel("Potential [V]/ Current [A]")
@@ -110,7 +108,9 @@ def start_IZ_sim():
 
     # update functions
     def update(val):
-        line.set_ydata(Izhikevich_Model(I_slider.val, a_slider.val, b_slider.val, c_slider.val, d_slider.val))
+        line.set_ydata(
+            Izhikevich_Model(I_slider.val, a_slider.val, b_slider.val,
+                             c_slider.val, d_slider.val))
         line2.set_ydata(I_values(I_slider.val, time=time))
 
     # update, if any slider is moved
@@ -120,11 +120,11 @@ def start_IZ_sim():
     c_slider.on_changed(update)
     d_slider.on_changed(update)
 
-
     ########################### REGULAR SPIKING BUTTON #############################
     # Add a button for resetting the parameters
     RS_button_ax = plt.axes([0.1, 0.1, 0.15, 0.04])
-    RS_button = Button(RS_button_ax, 'REGULAR SPIKING', color=axis_color, hovercolor='0.975')
+    RS_button = Button(
+        RS_button_ax, 'REGULAR SPIKING', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def RS_button_was_clicked(event):
@@ -136,11 +136,14 @@ def start_IZ_sim():
 
     RS_button.on_clicked(RS_button_was_clicked)
 
-
     ########################### INTRINSICALLY BURSTING BUTTON ######################
     # Add a button for resetting the parameters
     IB_button_ax = plt.axes([0.35, 0.1, 0.15, 0.04])
-    IB_button = Button(IB_button_ax, 'INTRINSICALLY BURSTING', color=axis_color, hovercolor='0.975')
+    IB_button = Button(
+        IB_button_ax,
+        'INTRINSICALLY BURSTING',
+        color=axis_color,
+        hovercolor='0.975')
 
     # event of resert button being clicked
     def IB_button_was_clicked(event):
@@ -152,11 +155,11 @@ def start_IZ_sim():
 
     IB_button.on_clicked(IB_button_was_clicked)
 
-
     ################################ CHATTERING BUTTON #############################
     # Add a button for resetting the parameters
     CH_button_ax = plt.axes([0.6, 0.1, 0.15, 0.04])
-    CH_button = Button(CH_button_ax, 'CHATTERING', color=axis_color, hovercolor='0.975')
+    CH_button = Button(
+        CH_button_ax, 'CHATTERING', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def CH_button_was_clicked(event):
@@ -168,11 +171,11 @@ def start_IZ_sim():
 
     CH_button.on_clicked(CH_button_was_clicked)
 
-
     ############################### FAST SPIKING BUTTON ############################
     # Add a button for resetting the parameters
     FS_button_ax = plt.axes([0.1, 0.02, 0.15, 0.04])
-    FS_button = Button(FS_button_ax, 'FAST SPIKING', color=axis_color, hovercolor='0.975')
+    FS_button = Button(
+        FS_button_ax, 'FAST SPIKING', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def FS_button_was_clicked(event):
@@ -184,11 +187,14 @@ def start_IZ_sim():
 
     FS_button.on_clicked(FS_button_was_clicked)
 
-
     ######################### LOW-THRESHOLD SPIKING BUTTON #########################
     # Add a button for resetting the parameters
     LTS_button_ax = plt.axes([0.35, 0.02, 0.15, 0.04])
-    LTS_button = Button(LTS_button_ax, 'LOW-THRESHOLD SPIKING', color=axis_color, hovercolor='0.975')
+    LTS_button = Button(
+        LTS_button_ax,
+        'LOW-THRESHOLD SPIKING',
+        color=axis_color,
+        hovercolor='0.975')
 
     # event of resert button being clicked
     def LTS_button_was_clicked(event):
@@ -200,11 +206,12 @@ def start_IZ_sim():
 
     LTS_button.on_clicked(LTS_button_was_clicked)
 
-
     ################################# RESONATOR BUTTON #############################
     # Add a button for resetting the parameters
     RZ_button_ax = plt.axes([0.6, 0.02, 0.15, 0.04])
-    RZ_button_ = Button(RZ_button_ax, 'RESONATOR', color=axis_color, hovercolor='0.975')
+    RZ_button_ = Button(
+        RZ_button_ax, 'RESONATOR', color=axis_color, hovercolor='0.975')
+
     # TODO Does it work?
     # event of resert button being clicked
     def RZ_button_was_clicked(event):
@@ -216,10 +223,10 @@ def start_IZ_sim():
 
     RZ_button_.on_clicked(RZ_button_was_clicked)
 
-
     plt.show()
+
 
 #==============================================================================#
 
-if (__name__=='__main__'):
+if (__name__ == '__main__'):
     start_IZ_sim()

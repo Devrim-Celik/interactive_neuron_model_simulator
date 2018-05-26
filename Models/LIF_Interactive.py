@@ -69,7 +69,7 @@ def start_LIF_sim():
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
 
-    fig = plt.figure("Leaky Integrate-and-Fire Neuron", figsize=(14,7))
+    fig = plt.figure("Leaky Integrate-and-Fire Neuron", figsize=(14, 7))
     ax = fig.add_subplot(111)
     plt.title("Interactive Leaky Integrate-and-Fire Neuron Simulation")
     fig.subplots_adjust(left=0.1, bottom=0.32)
@@ -79,7 +79,7 @@ def start_LIF_sim():
     line2 = plt.plot(time, I, label="Applied Current")[0]
 
     # add legend
-    plt.legend(loc = "upper right")
+    plt.legend(loc="upper right")
 
     # add axis labels
     plt.ylabel("Potential [V]/ Current [A]")
@@ -107,18 +107,21 @@ def start_LIF_sim():
 
     # Add a button for resetting the parameters
     reset_button_ax = plt.axes([0.8, 0.02, 0.1, 0.04])
-    reset_button = Button(reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
+    reset_button = Button(
+        reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def reset_button_was_clicked(event):
         I_slider.reset()
         gl_slider.reset()
         Cm_slider.reset()
+
     reset_button.on_clicked(reset_button_was_clicked)
 
     plt.show()
 
+
 #==============================================================================#
 
-if (__name__=='__main__'):
+if (__name__ == '__main__'):
     start_LIF_sim()

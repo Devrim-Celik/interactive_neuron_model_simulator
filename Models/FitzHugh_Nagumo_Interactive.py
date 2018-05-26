@@ -1,16 +1,16 @@
 __author__ = "Devrim Celik"
-
 """
 Interative plot, showcasing the FitzHugh_Nagumo Model
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.pyplot import  Button, Slider
+from matplotlib.pyplot import Button, Slider
 
 #==============================================================================#
 
-def FitzHugh_Nagumo(_I=0.5, a=0.7, b=0.8, tau=1/0.08):
+
+def FitzHugh_Nagumo(_I=0.5, a=0.7, b=0.8, tau=1 / 0.08):
 
     ######### Experimental Setup
     # TIME
@@ -30,20 +30,22 @@ def FitzHugh_Nagumo(_I=0.5, a=0.7, b=0.8, tau=1/0.08):
     V[0] = -0.7
     W[0] = -0.5
 
-
     for i in range(1, len(time)):
         #calculate membrane potential & resting variable
-        V[i] = V[i-1] + (V[i-1]-(V[i-1]**3)/3 - W[i-1] + I[i])*dt
-        W[i] = W[i-1] + ((V[i-1]+a - b*W[i-1])/tau)*dt
+        V[i] = V[i - 1] + (V[i - 1] - (V[i - 1]**3) / 3 - W[i - 1] + I[i]) * dt
+        W[i] = W[i - 1] + ((V[i - 1] + a - b * W[i - 1]) / tau) * dt
 
     return V, W
+
 
 def I_values(_I=0.5, time=None):
     I = np.zeros(len(time))
     I[5000:35000] = _I
     return I
 
+
 #==============================================================================#
+
 
 def start_FN_sim():
     # time parameters for plotting
@@ -63,7 +65,7 @@ def start_FN_sim():
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
 
-    fig = plt.figure("FitzHugh-Nagumo Neuron", figsize=(14,7))
+    fig = plt.figure("FitzHugh-Nagumo Neuron", figsize=(14, 7))
     ax = fig.add_subplot(111)
     plt.title("Interactive FitzHugh-Nagumo Neuron Simulation")
     fig.subplots_adjust(left=0.1, bottom=0.32)
@@ -73,9 +75,8 @@ def start_FN_sim():
     line3 = plt.plot(time, I, label="Applied Current")[0]
     line2 = plt.plot(time, W, lw=0.3, label="Recovery Variable")[0]
 
-
     # add legend
-    plt.legend(loc = "upper right")
+    plt.legend(loc="upper right")
 
     # add axis labels
     plt.ylabel("Potential [V]/ Current [A]")
@@ -87,7 +88,7 @@ def start_FN_sim():
 
     # update functions
     def update(val):
-        V, W = FitzHugh_Nagumo(_I = I_slider.val)
+        V, W = FitzHugh_Nagumo(_I=I_slider.val)
         line.set_ydata(V)
         line2.set_ydata(W)
         line3.set_ydata(I_values(I_slider.val, time=time))
@@ -97,7 +98,8 @@ def start_FN_sim():
 
     # Add a button for resetting the parameters
     reset_button_ax = plt.axes([0.8, 0.02, 0.1, 0.04])
-    reset_button = Button(reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
+    reset_button = Button(
+        reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def reset_button_was_clicked(event):
@@ -107,7 +109,8 @@ def start_FN_sim():
 
     plt.show()
 
+
 #==============================================================================#
 
-if (__name__=='__main__'):
+if (__name__ == '__main__'):
     start_FN_sim()
