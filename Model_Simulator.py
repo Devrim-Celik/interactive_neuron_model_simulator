@@ -2,6 +2,16 @@ __author__ = "Devrim Celik"
 
 import tkinter as tk
 
+from sys import platform as sys_pf
+if sys_pf == 'darwin':
+    import matplotlib
+    matplotlib.use("TkAgg")
+
+from Models.LIF_Interactive import start_LIF_sim
+from Models.Hodgkin_Huxley_Interactive import start_HH_sim
+from Models.Izhikevich_Interactive import start_IZ_sim
+from Models.FitzHugh_Nagumo_Interactive import start_FN_sim
+
 if (__name__=="__main__"):
     ####### Initialize root
     root = tk.Tk()
@@ -55,13 +65,6 @@ if (__name__=="__main__"):
     EXIT_btn = tk.Button(root, text="Exit",
         command=close_window, height=1, width=15)
     EXIT_btn.pack()
-
-    ######## Don't know why, but return error if I import them at the start of
-    ########   the script
-    from Models.LIF_Interactive import start_LIF_sim
-    from Models.Hodgkin_Huxley_Interactive import start_HH_sim
-    from Models.Izhikevich_Interactive import start_IZ_sim
-    from Models.FitzHugh_Nagumo_Interactive import start_FN_sim
 
     ######## start root
     root.mainloop()
