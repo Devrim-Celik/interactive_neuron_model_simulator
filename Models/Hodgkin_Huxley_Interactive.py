@@ -1,21 +1,26 @@
 __author__ = "Devrim Celik"
-
 """
 Interative plot, showcasing the Hodgkin Huxley Neuron Dynmics
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.pyplot import  Button, Slider
+from matplotlib.pyplot import Button, Slider
 from scipy.integrate import odeint
 
 #==============================================================================#
 
-def HH(_I = 7, g_Na = 120., g_K = 36., g_Leak = 0.3, E_Na = 50., E_K = -77.,
-    E_Leak = -54.387):
+
+def HH(_I=7,
+       g_Na=120.,
+       g_K=36.,
+       g_Leak=0.3,
+       E_Na=50.,
+       E_K=-77.,
+       E_Leak=-54.387):
 
     ######### Constants
-    C_m = 1.        # Membrane Capacitance
+    C_m = 1.  # Membrane Capacitance
 
     ######### Gating Kinetics
     m_alpha =       lambda V: 0.1 * (V + 40.0) / (1.0 - np.exp(-(V + 40.0) / 10.0))
@@ -38,9 +43,7 @@ def HH(_I = 7, g_Na = 120., g_K = 36., g_Leak = 0.3, E_Na = 50., E_K = -77.,
     # CURRENT
 
     def I(t):
-        return _I*(40<t<300)
-
-
+        return _I * (40 < t < 300)
 
     # Function to odeint over
     def change(X, t):
@@ -91,7 +94,7 @@ def start_HH_sim():
     ######### Plotting
     axis_color = 'lightgoldenrodyellow'
 
-    fig = plt.figure("Hodgkin Huxley Neuron", figsize=(14,8))
+    fig = plt.figure("Hodgkin Huxley Neuron", figsize=(14, 8))
     ax = fig.add_subplot(211)
     plt.title("Interactive Hodgkin Huxley Neuron Simulation")
     fig.subplots_adjust(left=0.1, bottom=0.25)
@@ -101,7 +104,7 @@ def start_HH_sim():
     line2 = plt.plot(time, I, label="Applied Current")[0]
 
     # add legend
-    plt.legend(loc = "upper right")
+    plt.legend(loc="upper right")
 
     # add axis labels
     plt.ylabel("Potential [V]/ Current [A]")
@@ -116,36 +119,45 @@ def start_HH_sim():
 
     plt.ylabel('Gating Value')
     plt.xlabel("Time [s]")
-    plt.legend(loc = "upper right")
-
+    plt.legend(loc="upper right")
 
     # define sliders (position, color, inital value, parameter, etc...)
     I_slider_axis = plt.axes([0.1, 0.15, 0.65, 0.03], facecolor=axis_color)
     I_slider = Slider(I_slider_axis, '$I_{ext}$ ', 0.0, 7., valinit=I_init)
 
     gNa_slider_axis = plt.axes([0.1, 0.1, 0.17, 0.03], facecolor=axis_color)
-    gNa_slider = Slider(gNa_slider_axis, '$g_{Na}$ ', 80., 160., valinit=g_Na_init)
+    gNa_slider = Slider(
+        gNa_slider_axis, '$g_{Na}$ ', 80., 160., valinit=g_Na_init)
 
     gK_slider_axis = plt.axes([0.34, 0.1, 0.17, 0.03], facecolor=axis_color)
     gK_slider = Slider(gK_slider_axis, '$g_{K}$ ', 0., 70., valinit=g_K_init)
 
     gLeak_slider_axis = plt.axes([0.58, 0.1, 0.17, 0.03], facecolor=axis_color)
-    gLeak_slider = Slider(gLeak_slider_axis, '$g_{Leak}$ ', 0., 1., valinit=g_Leak_init)
+    gLeak_slider = Slider(
+        gLeak_slider_axis, '$g_{Leak}$ ', 0., 1., valinit=g_Leak_init)
 
     ENa_slider_axis = plt.axes([0.1, 0.05, 0.17, 0.03], facecolor=axis_color)
-    ENa_slider = Slider(ENa_slider_axis, '$E_{Na}$ ', 20., 80., valinit=E_Na_init)
+    ENa_slider = Slider(
+        ENa_slider_axis, '$E_{Na}$ ', 20., 80., valinit=E_Na_init)
 
     EK_slider_axis = plt.axes([0.34, 0.05, 0.17, 0.03], facecolor=axis_color)
-    EK_slider = Slider(EK_slider_axis, '$E_{K}$ ', -100., -50., valinit=E_K_init)
+    EK_slider = Slider(
+        EK_slider_axis, '$E_{K}$ ', -100., -50., valinit=E_K_init)
 
-    ELeak_slider_axis = plt.axes([0.58, 0.05, 0.17, 0.03], facecolor=axis_color)
-    ELeak_slider = Slider(ELeak_slider_axis, '$E_{Leak}$ ', -70, -40, valinit=E_Leak_init)
+    ELeak_slider_axis = plt.axes(
+        [0.58, 0.05, 0.17, 0.03], facecolor=axis_color)
+    ELeak_slider = Slider(
+        ELeak_slider_axis, '$E_{Leak}$ ', -70, -40, valinit=E_Leak_init)
 
     def update(val):
-        V, m, h, n =  HH(_I=I_slider.val, g_Na = gNa_slider.val,
-            g_K = gK_slider.val, g_Leak = gLeak_slider.val,
-            E_Na = ENa_slider.val, E_K = EK_slider.val,
-            E_Leak = ELeak_slider.val)
+        V, m, h, n = HH(
+            _I=I_slider.val,
+            g_Na=gNa_slider.val,
+            g_K=gK_slider.val,
+            g_Leak=gLeak_slider.val,
+            E_Na=ENa_slider.val,
+            E_K=EK_slider.val,
+            E_Leak=ELeak_slider.val)
         line.set_ydata(V)
         line2.set_ydata(I_values(_I=I_slider.val, time=time))
         line3.set_ydata(m)
@@ -163,7 +175,8 @@ def start_HH_sim():
 
     # Add a button for resetting the parameters
     reset_button_ax = plt.axes([0.8, 0.02, 0.1, 0.04])
-    reset_button = Button(reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
+    reset_button = Button(
+        reset_button_ax, 'Reset', color=axis_color, hovercolor='0.975')
 
     # event of resert button being clicked
     def reset_button_was_clicked(event):
@@ -179,7 +192,8 @@ def start_HH_sim():
 
     plt.show()
 
+
 #==============================================================================#
 
-if (__name__=="__main__"):
+if (__name__ == "__main__"):
     start_HH_sim()
