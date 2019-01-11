@@ -31,5 +31,6 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 
 ---
 
-## Screenshot of Izhikevich Model Simulator
-![Izhikevich Model Simulator](https://github.com/MistySheep/Interactive_Neuron-Models/blob/master/images/izhikevich_model_sim.png)
+## Showcasing
+![Izhikevich Model Simulator](https://github.com/Devrim-Celik/Interactive_Neuron-Models/blob/master/images/HH.gif)
+![Izhikevich Model Simulator](https://github.com/Devrim-Celik/Interactive_Neuron-Models/blob/master/images/IZ.gif)

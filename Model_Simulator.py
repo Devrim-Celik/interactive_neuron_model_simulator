@@ -56,6 +56,7 @@ if (__name__ == "__main__"):
         width=30)
     LIF_btn.pack()
 
+
     HH_btn = tk.Button(
         root,
         text="Hodgkin-Huxley Model",
@@ -65,7 +66,11 @@ if (__name__ == "__main__"):
     HH_btn.pack()
 
     IZ_btn = tk.Button(
-        root, text="Izhikevich Model", command=IZ_clicked, height=1, width=30)
+        root, 
+	text="Izhikevich Model", 
+	command=IZ_clicked, 
+	height=1, 
+	width=30)
     IZ_btn.pack()
 
     FN_btn = tk.Button(
@@ -77,7 +82,11 @@ if (__name__ == "__main__"):
     FN_btn.pack()
 
     EXIT_btn = tk.Button(
-        root, text="Exit", command=close_window, height=1, width=15)
+        root, 
+	text="Exit", 
+	command=close_window, 
+	height=1, 
+	width=15)
     EXIT_btn.pack()
 
     ######## start root
