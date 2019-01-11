@@ -32,5 +32,5 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 ---
 
 ## Showcasing
-![Izhikevich Model Simulator](https://github.com/Devrim-Celik/Interactive_Neuron-Models/blob/master/images/HH.gif)
-![Izhikevich Model Simulator](https://github.com/Devrim-Celik/Interactive_Neuron-Models/blob/master/images/IZ.gif)
+![Hodgkin Huxley Model Simulator](https://github.com/Devrim-Celik/interactive_neuron_model_simulator/blob/master/images/HH.gif)
+![Izhikevich Model Simulator](https://github.com/Devrim-Celik/interactive_neuron_model_simulator/blob/master/images/IZ.gif)
