@@ -1,7 +1,7 @@
 # Interative Neuron Models
 In this repository, you can find a variety of computational neuron models,
 ranging from complex models such as the Hodgkin-Huxley model over to simple
-model like a leaky integrate-and-fire model; written in Python 3.  
+model like a leaky integrate-and-fire model; written in Python 3.
 Each of those is represented via a GUI, coded in **tkinter**, allowing the
 user to manipulate the external current as well as model specific key values.
 
@@ -18,7 +18,7 @@ user to manipulate the external current as well as model specific key values.
 ## Execution
 Simply clone this repository, be sure to have all the required packages
 installed and execute ```Model_Simulator.py```, which opens a menu of different
-models to choose from.  
+models to choose from.
 After one is chosen, an interactive ```matplotlib``` window will open.
 
 ---
@@ -32,5 +32,9 @@ After one is chosen, an interactive ```matplotlib``` window will open.
 ---
 
 ## Showcasing
+
+#### Hodgin-Huxely
 ![Hodgkin Huxley Model Simulator](https://github.com/Devrim-Celik/interactive_neuron_model_simulator/blob/master/images/HH.gif)
+
+#### Izhikevich
 ![Izhikevich Model Simulator](https://github.com/Devrim-Celik/interactive_neuron_model_simulator/blob/master/images/IZ.gif)
